@@ -21,6 +21,8 @@ public:
     void writeImage(Mat &image, string name);
 public slots:
     void imageSent(int exitCode, QProcess::ExitStatus exitStatus);
+signals:
+    void imageSent(QString text);
 };
 
 #endif // CAPTUREIMAGE_H

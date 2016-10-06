@@ -8,7 +8,6 @@
 #include <QWidget>
 
 #include "mainwindow.h"
-#include "captureimage.h"
 #include "stream.h"
 
 stream *strm;

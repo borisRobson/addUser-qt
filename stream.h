@@ -14,17 +14,14 @@
 #include "glib-2.0/glib.h"
 #include "opencv2/opencv.hpp"
 #include "opencv2/highgui/highgui.hpp"
-#include "mainwindow.h"
 
+#include "mainwindow.h"
 
 #include <QApplication>
 #include <QTimer>
 #include <QWidget>
 #include <glib.h>
-
 #include <gst/interfaces/xoverlay.h>
-
-
 
 using namespace std;
 using namespace cv;
@@ -36,19 +33,10 @@ public:
     stream();
     bool buildpipeline(MainWindow &window);
     void startstream();
-};
-
-/*
-class Task: public QObject{
-    Q_OBJECT
-public:
-    Task(QObject* parent=0) : QObject(parent){}
-private:
-
 public slots:
-    void run();
-signals:
-    void finished();
+    void printtext();
+    void capTimeOut();
+    void updateWindow();
 };
-*/
+
 #endif // STREAM_H

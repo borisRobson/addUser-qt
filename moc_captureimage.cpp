@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'captureimage.h'
 **
-** Created: Thu Oct 6 13:05:54 2016
+** Created: Thu Oct 6 15:13:56 2016
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,21 +23,25 @@ static const uint qt_meta_data_captureimage[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: signature, parameters, type, tag, flags
+      19,   14,   13,   13, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      34,   14,   13,   13, 0x0a,
+      58,   38,   13,   13, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_captureimage[] = {
-    "captureimage\0\0exitCode,exitStatus\0"
+    "captureimage\0\0text\0imageSent(QString)\0"
+    "exitCode,exitStatus\0"
     "imageSent(int,QProcess::ExitStatus)\0"
 };
 
@@ -70,11 +74,19 @@ int captureimage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: imageSent((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< QProcess::ExitStatus(*)>(_a[2]))); break;
+        case 0: imageSent((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 1: imageSent((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< QProcess::ExitStatus(*)>(_a[2]))); break;
         default: ;
         }
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
+}
+
+// SIGNAL 0
+void captureimage::imageSent(QString _t1)
+{
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_END_MOC_NAMESPACE
