@@ -31,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>20</y>
+      <y>40</y>
       <width>181</width>
       <height>41</height>
      </rect>
@@ -45,6 +45,32 @@
       <width>181</width>
       <height>321</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>20</y>
+      <width>101</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Enter User ID: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>130</y>
+      <width>91</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Activity Log</string>
     </property>
    </widget>
   </widget>

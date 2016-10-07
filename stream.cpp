@@ -1,7 +1,7 @@
 #include "stream.h"
 #include "captureimage.h"
 
-GstElement *asink;
+GstElement *asink, *imgsink;
 GstElement *pipeline;
 GstPad *tee_video2_pad, *tee_video_pad;
 GstPad *queue_video_pad, *queue_video2_pad;
@@ -27,7 +27,6 @@ stream::stream()
     captureTimer = new QTimer();
     captureTimer->setInterval(250);
     connect(captureTimer, SIGNAL(timeout()), SLOT(capTimeOut()));
-
 }
 
 
@@ -40,7 +39,7 @@ bool stream::buildpipeline(MainWindow &window)
     GstElement *conv = gst_element_factory_make("ffmpegcolorspace", NULL);
     GstElement *tee  = gst_element_factory_make("tee", NULL);
     GstElement *q1 = gst_element_factory_make("queue", NULL);
-    GstElement *imgsink = gst_element_factory_make ("xvimagesink", NULL);
+    imgsink = gst_element_factory_make ("xvimagesink", NULL);
     GstElement *q2 = gst_element_factory_make("queue", NULL);
     GstElement *rgbfilter = gst_element_factory_make("capsfilter", NULL);
     GstElement *conv2 = gst_element_factory_make("ffmpegcolorspace", NULL);
@@ -49,7 +48,7 @@ bool stream::buildpipeline(MainWindow &window)
     //set app sink properties
     gst_app_sink_set_emit_signals((GstAppSink*)asink, true);
     gst_app_sink_set_drop((GstAppSink*)asink, true);
-    gst_app_sink_set_max_buffers((GstAppSink*)asink, 2);
+    gst_app_sink_set_max_buffers((GstAppSink*)asink, 10);
     GstAppSinkCallbacks callbacks = {NULL, new_preroll, new_buffer, NULL};
     gst_app_sink_set_callbacks(GST_APP_SINK(asink), &callbacks, NULL, NULL);
 
@@ -113,6 +112,8 @@ bool stream::buildpipeline(MainWindow &window)
     connect(win->button, SIGNAL(clicked()), this, SLOT(printtext()));
     connect(imgcap, SIGNAL(imageSent(QString)), win, SLOT(updateText(QString)));
 
+    gst_element_set_state(pipeline, GST_STATE_PAUSED);
+
     return true;
 }
 
@@ -173,6 +174,7 @@ GstFlowReturn new_buffer(GstAppSink* asink, gpointer data)
 {
     Q_UNUSED(asink);
     Q_UNUSED(data);
+    gst_x_overlay_expose(GST_X_OVERLAY(imgsink));
 
     return GST_FLOW_OK;
 }
